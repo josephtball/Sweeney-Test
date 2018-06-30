@@ -1,5 +1,20 @@
-<?php get_header(); ?>
+<?php
+    get_header();
 
-<h1>This is my index</h1>
+    if (have_posts()) :
+        while (have_posts()) : the_post(); ?>
+        
+        <article class="post">
+            <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+            <?php the_content(); ?>
+        </article>
 
-<?php get_footer(); ?>
+        <?php endwhile;
+
+    else :
+        echo '<p>No posts found</p>';
+
+    endif;
+
+    get_footer();
+?>
